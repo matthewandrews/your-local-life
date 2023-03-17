@@ -1,0 +1,14 @@
+
+body, .btn {
+    font-family: 'Caveat', cursive;
+    text-align: center;
+    font-size: 2rem;
+}
+h1 {
+    margin: 5rem 0 3rem;
+    font-size: 4rem;
+}
+.hide-init {
+    display: none;
+}
+
