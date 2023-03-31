@@ -15,6 +15,14 @@ h1 {
     display: none;
 }
 
+.begin-para {
+    margin-bottom: 3rem;
+}
+
+.imageWrapper, .commonnameWrapper {
+    clear: both;
+}
+
 .speciesImage {
     max-width: 100px;
 }
@@ -23,4 +31,26 @@ h1 {
     padding: 20px;
 }
 
-.mapContainer{width:100%;height:500px;}
+.localSpeciesCard {
+    border: 0.1rem solid lightgray;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: fit-content;
+    float: left;
+    margin: 0 1rem 1rem 0;
+}
+
+.localSpeciesCardImage img {
+    height: 6rem;
+}
+
+.localSpeciesCardText {
+    font-size: 0.7rem;
+}
+
+.mapContainer{
+    float: right;
+    width: 57%;
+    height: 15rem; 
+    margin-bottom: 1rem;
+}
