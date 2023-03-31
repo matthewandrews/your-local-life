@@ -39,12 +39,20 @@
                         class="form-control"
                         aria-describedby="address-hint"
                         name="address"
-                        type="text" />
+                        type="text"
+                        value="-35.2,149.1"/>
                         <span class="input-group-btn">
                         <input id="locationSearch" type="submit" class="btn btn-default" value="Search">
                         </span>
                       </div>
                       <span id="address-hint" class="input-hint">Enter a street <label for="address">address</label>, place name, postcode or GPS coordinates (lat, long)... or just <a href="#">use your location</a></span>
+                      <span><span class='suggestion' onclick="setAddress('-27.47,153')">Brisbane</span>
+                      <span class='suggestion' onclick="setAddress('-35.2,149.1')">Canberra</span>
+                      <span class='suggestion' onclick="setAddress('-13.46,130.84')">Darwin</span>
+                      <span class='suggestion' onclick="setAddress('-42.88,147.32')">Hobart</span>
+                      <span class='suggestion' onclick="setAddress('-37.81,144.96')">Melbourne</span>
+                      <span class='suggestion' onclick="setAddress('-31.95,115.86')">Perth</span>
+                      <span class='suggestion' onclick="setAddress('-33.87,151.2')">Sydney</span></span>
                 </div>
 
             </form>
