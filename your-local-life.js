@@ -83,25 +83,23 @@ function showSpecies(data) {
                 $.get("https://bie.ala.org.au/ws/species/" + commonname, function (data) {
                     if (data.imageIdentifier != null) {
                         let imageURL = "https://images.ala.org.au/image/proxyImageThumbnail?imageId=" + data.imageIdentifier;
-                        $('#localSpecies').append('<div class="localSpeciesCard" onclick="showOnMap(\'' + data.taxonConcept.guid + '\')"><div class="localSpeciesCardImage"><a href="' + speciesURL + '"><img src="' + imageURL + '" alt="' + commonname + '" /></a></div><div class="localSpeciesCardText"><a href="' + speciesURL + '">' + commonname + '</a></div></div>');
-                        $('#localSpecies .localSpeciesCard:last').hide().fadeIn(900);
-                        $('.footerPlaceholder')[0].scrollIntoView(false); //keep footer at bottom of viewport
-                        let currentImage = $('#localSpecies .localSpeciesCard:last .localSpeciesCardImage img');
-                        currentImage.animate({
-                            opacity: 1
-                          }, 1500, function() {
-                            // animation complete
-                            currentImage.animate({
-                                height: '4rem'
-                              }, 500, function() {
-                                // animation complete
+                        $('#localSpeciesPreview').append('<div class="localSpeciesCard" onclick="showOnMap(\'' + data.taxonConcept.guid + '\')"><div class="localSpeciesCardImage"><a href="' + speciesURL + '"><img src="' + imageURL + '" alt="' + commonname + '" /></a></div><div class="localSpeciesCardText"><a href="' + speciesURL + '">' + commonname + '</a></div></div>');
+                        $('#localSpeciesPreview .localSpeciesCard:first').hide().fadeIn(600, function() {
+                            $('#localSpeciesPreview .localSpeciesCard:first').animate({
+                                opacity: 1
+                              }, 1500, function() {
+                                $('#localSpeciesPreview .localSpeciesCard:first').hide().fadeOut(600, function() {
+                                    $('#localSpeciesPreview .localSpeciesCard:first').remove();
+                                    $('#localSpecies').append('<div class="localSpeciesCard" onclick="showOnMap(\'' + data.taxonConcept.guid + '\')"><div class="localSpeciesCardImage"><a href="' + speciesURL + '"><img src="' + imageURL + '" alt="' + commonname + '" /></a></div><div class="localSpeciesCardText"><a href="' + speciesURL + '">' + commonname + '</a></div></div>');
+                                    $('#localSpecies .localSpeciesCard:last').hide().fadeIn(600);
+                                });
                             });
                         });
                     }
                 });
             }
 
-            resolve(true)}, 2000)});
+            resolve(true)}, 2700)});
         }
     })()
 }

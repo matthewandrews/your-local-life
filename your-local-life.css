@@ -40,12 +40,27 @@ h1 {
     padding: 0.75rem 1rem 0.3rem;
 }
 
-.localSpeciesCard .localSpeciesCardImage img {
+#localSpeciesPreview .localSpeciesCardImage img {
     height: 16rem;
+    max-width: 26rem;
+}
+
+#localSpecies .localSpeciesCardImage img {
+    height: 4rem;
 }
 
 .localSpeciesCardText {
     font-size: 0.9rem;
+}
+
+#localSpeciesPreview {
+    float: left;
+    width: 40%;
+    height: 18rem;
+}
+
+#localSpecies {
+    clear: both;
 }
 
 .local-life-content {
@@ -67,7 +82,7 @@ h1 {
 .mapContainer{
     float: right;
     width: 57%;
-    height: 15rem;
+    height: 18rem;
     margin-bottom: 1rem;
 }
 
