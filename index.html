@@ -21,8 +21,9 @@
   <body>
 
     <main role="main" class="container">
+      <div class="headerPlaceholder"></div>
 
-      <div class="initial-text">
+      <div class="local-life-content">
         <h1 class="your-local-life-title hide-init">Your local life</h1>
         <div id="compressed-location" class="hide-init"></div>
         <div class="begin-para hide-init">
@@ -62,82 +63,17 @@
       <div id="map" class="mapContainer"></div>
 
       <div id="localSpecies">
-        <!--
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          <div class="localSpeciesCard">
-            <div class="localSpeciesCardImage"><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321"><img src="https://images.ala.org.au/image/proxyImageThumbnail?imageId=66b379db-17d7-46d4-810b-f07a05cb64e8" alt="Amanita muscaria" /></a></div>
-            <div class="localSpeciesCardText"></div><a href="https://bie.ala.org.au/species/https://id.biodiversity.org.au/node/fungi/60092321">Fly agaric</a></div>
-          </div>
-          -->
       </div>
 
       <div id="imageWrapper">
-          <div id="imageEnd"/>
+          <div id="imageEnd"></div>
       </div>
 
       <div id="commonnameWrapper">
-          <div id="commonnameEnd"/>
+          <div id="commonnameEnd"></div>
       </div>
-
+    </div>
+    <div class="footerPlaceholder"></div>
 
     </main>
 

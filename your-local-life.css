@@ -8,7 +8,7 @@ body, .btn {
 html,body{margin:0px;height:100%;width:100%}
 
 h1 {
-    margin: 5rem 0 3rem;
+    margin: 3rem 0 2rem;
     font-size: 4rem;
 }
 .hide-init {
@@ -34,18 +34,34 @@ h1 {
 .localSpeciesCard {
     border: 0.1rem solid lightgray;
     border-radius: 0.5rem;
-    padding: 1rem;
     width: fit-content;
     float: left;
     margin: 0 1rem 1rem 0;
+    padding: 0.75rem 1rem 0.3rem;
 }
 
-.localSpeciesCardImage img {
-    height: 6rem;
+.localSpeciesCard .localSpeciesCardImage img {
+    height: 16rem;
 }
 
 .localSpeciesCardText {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+}
+
+.local-life-content {
+    min-height: 80vh;
+    padding-bottom: 15rem;
+}
+
+.headerPlaceholder {
+    height: 8rem;
+    background-color: grey;
+}
+
+.footerPlaceholder {
+    height: 8rem;
+    background-color: grey;
+    clear: both;
 }
 
 .mapContainer{

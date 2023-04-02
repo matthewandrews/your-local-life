@@ -83,14 +83,25 @@ function showSpecies(data) {
                 $.get("https://bie.ala.org.au/ws/species/" + commonname, function (data) {
                     if (data.imageIdentifier != null) {
                         let imageURL = "https://images.ala.org.au/image/proxyImageThumbnail?imageId=" + data.imageIdentifier;
-                        $('#localSpecies').append('<div class="localSpeciesCard" onclick="showOnMap(\'' + data.taxonConcept.guid + '\')"><div class="localSpeciesCardImage"><a href="' + speciesURL + '"><img src="' + imageURL + '" alt="' + commonname + '" /></a></div><div class="localSpeciesCardText"></div><a href="' + speciesURL + '">' + commonname + '</a></div></div>');
-                        $('#localSpecies div:last').hide().fadeIn(1000);
+                        $('#localSpecies').append('<div class="localSpeciesCard" onclick="showOnMap(\'' + data.taxonConcept.guid + '\')"><div class="localSpeciesCardImage"><a href="' + speciesURL + '"><img src="' + imageURL + '" alt="' + commonname + '" /></a></div><div class="localSpeciesCardText"><a href="' + speciesURL + '">' + commonname + '</a></div></div>');
+                        $('#localSpecies .localSpeciesCard:last').hide().fadeIn(900);
+                        $('.footerPlaceholder')[0].scrollIntoView(false); //keep footer at bottom of viewport
+                        let currentImage = $('#localSpecies .localSpeciesCard:last .localSpeciesCardImage img');
+                        currentImage.animate({
+                            opacity: 1
+                          }, 1500, function() {
+                            // animation complete
+                            currentImage.animate({
+                                height: '4rem'
+                              }, 500, function() {
+                                // animation complete
+                            });
+                        });
                     }
                 });
-
             }
 
-            resolve(true)}, 1000)});
+            resolve(true)}, 2000)});
         }
     })()
 }
