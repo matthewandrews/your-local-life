@@ -1,48 +1,269 @@
 
-body, .btn {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    font-size: 1.5rem;
+/* ALA-inspired palette and layout */
+:root {
+    --ala-teal-900: #003b49;
+    --ala-teal-700: #0b6b74;
+    --ala-teal-500: #1a9aa6;
+    --ala-orange-600: #f15a24;
+    --ala-sand-50: #fbfaf7;
+    --ala-sand-100: #f3f0e8;
+    --ala-ink-900: #0f1a1c;
+    --ala-ink-700: #223235;
+    --ala-ink-500: #445a5f;
+    --ala-border: rgba(15, 26, 28, 0.12);
+    --ala-shadow: 0 12px 30px rgba(15, 26, 28, 0.12);
+    --ala-radius: 18px;
 }
 
-html,body{margin:0px;height:100%;width:100%}
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--ala-ink-900);
+    background:
+        radial-gradient(1200px 480px at 12% 0%, rgba(26, 154, 166, 0.12), transparent 60%),
+        radial-gradient(900px 420px at 92% 8%, rgba(241, 90, 36, 0.12), transparent 55%),
+        linear-gradient(180deg, var(--ala-sand-50), var(--ala-sand-100));
+}
+
+main.container {
+    padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
 
 h1 {
-    margin: 3rem 0 2rem;
-    font-size: 4rem;
+    margin: 2rem 0 1rem;
+    font-size: 3.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ala-teal-900);
 }
+
 .hide-init {
     display: none;
 }
 
-.begin-para {
+/* Location + controls row */
+.result-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
     margin-bottom: 3rem;
 }
 
-.imageWrapper, .commonnameWrapper {
-    clear: both;
+.begin-para {
+    margin-bottom: 0;
+    color: var(--ala-ink-700);
 }
 
-.speciesImage {
-    max-width: 100px;
+/* After a search begins, keep the gap tight */
+body.has-results .result-bar {
+    margin-bottom: 2rem;
 }
 
-.commonname {
-    padding: 20px;
+.where-para {
+    margin-bottom: 2rem;
+}
+
+.where-controls {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results {
+    margin-top: 0;
+}
+
+.input-hint {
+    display: block;
+    margin-top: 0.65rem;
+    color: var(--ala-ink-500);
+    font-size: 1rem;
+}
+
+.input-group .form-control {
+    border: 1px solid var(--ala-border);
+    border-right: 0;
+    border-radius: 999px 0 0 999px;
+    padding: 0.9rem 1.05rem;
+    font-size: 1.05rem;
+}
+
+.input-group .ala-btn {
+    border-radius: 0 999px 999px 0;
+}
+
+.input-group .ala-btn {
+    border-left: 0;
+}
+
+.ala-btn {
+    background: var(--ala-orange-600);
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.9rem 1.1rem;
+    letter-spacing: 0.01em;
+}
+
+.ala-btn-secondary {
+    background: var(--ala-teal-700);
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.65rem 0.95rem;
+    border-radius: 999px;
+}
+
+.ala-btn-secondary:hover {
+    background: var(--ala-teal-900);
+    color: #fff;
+}
+
+.ala-btn-secondary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(11, 107, 116, 0.25);
+}
+
+.ala-btn:hover {
+    background: #e54f1b;
+    color: #fff;
+}
+
+.ala-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(241, 90, 36, 0.28);
+}
+
+.suggestion {
+    color: var(--ala-teal-700);
+    margin: 6px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.suggestion:hover {
+    color: var(--ala-teal-900);
+}
+
+/* Header (ALA-like) */
+.ala-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(251, 250, 247, 0.78);
+    border-bottom: 1px solid var(--ala-border);
+}
+
+.ala-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 15px;
+}
+
+.ala-brand {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ala-brand-logo {
+    width: 325px;
+    height: auto;
+    max-width: 100%;
+}
+
+.ala-app-title {
+    text-align: right;
+    line-height: 1.1;
+}
+
+.ala-app-kicker {
+    font-size: 0.9rem;
+    color: var(--ala-ink-500);
+}
+
+.ala-app-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ala-teal-900);
+}
+
+/* Panels */
+.ala-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--ala-border);
+    border-radius: var(--ala-radius);
+    box-shadow: var(--ala-shadow);
+    overflow: hidden;
+}
+
+/* Map + preview side-by-side row */
+.map-species-row {
+    display: flex;
+    gap: 3%;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+#localSpeciesPreview {
+    flex: 0 0 40%;
+    min-height: 18rem;
+    padding: 1rem;
+}
+
+.mapContainer {
+    flex: 1 1 0;
+    height: 18rem;
+}
+
+/* Species card grid */
+#localSpecies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 .localSpeciesCard {
-    border: 0.1rem solid lightgray;
-    border-radius: 0.5rem;
+    border: 1px solid var(--ala-border);
+    border-radius: 14px;
     width: fit-content;
-    float: left;
-    margin: 0 1rem 1rem 0;
-    padding: 0.75rem 1rem 0.3rem;
+    padding: 0.75rem 1rem 0.45rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.localSpeciesCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 26, 28, 0.12);
+    border-color: rgba(11, 107, 116, 0.28);
+}
+
+.localSpeciesCard a {
+    color: var(--ala-teal-900);
+    text-decoration: none;
+}
+
+.localSpeciesCard a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 #localSpeciesPreview .localSpeciesCardImage img {
     height: 16rem;
     max-width: 26rem;
+    border-radius: 12px;
 }
 
 #localSpecies .localSpeciesCardImage img {
@@ -51,16 +272,7 @@ h1 {
 
 .localSpeciesCardText {
     font-size: 0.9rem;
-}
-
-#localSpeciesPreview {
-    float: left;
-    width: 40%;
-    height: 18rem;
-}
-
-#localSpecies {
-    clear: both;
+    margin-top: 0.4rem;
 }
 
 .local-life-content {
@@ -68,25 +280,50 @@ h1 {
     padding-bottom: 15rem;
 }
 
-.headerPlaceholder {
-    height: 8rem;
-    background-color: grey;
+/* Once searching/results are active, don't reserve huge vertical space */
+body.has-results .local-life-content {
+    min-height: auto;
+    padding-bottom: 0;
+    margin-bottom: 2rem;
 }
 
-.footerPlaceholder {
-    height: 8rem;
-    background-color: grey;
-    clear: both;
+/* Footer */
+.ala-footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ala-border);
+    color: var(--ala-ink-500);
 }
 
-.mapContainer{
-    float: right;
-    width: 57%;
-    height: 18rem;
-    margin-bottom: 1rem;
+.ala-footer-inner {
+    font-size: 0.95rem;
 }
 
-.suggestion {
-    color: blue;
-    margin: 5px;
+/* Responsive: stack preview above map on narrow screens */
+@media (max-width: 700px) {
+    .map-species-row {
+        flex-direction: column;
+    }
+
+    #localSpeciesPreview {
+        flex: none;
+        width: 100%;
+    }
+
+    .mapContainer {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2.35rem;
+    }
+
+    .ala-header-inner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .ala-app-title {
+        display: none;
+    }
 }
