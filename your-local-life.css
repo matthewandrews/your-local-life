@@ -13,6 +13,8 @@
     --ala-border: rgba(15, 26, 28, 0.12);
     --ala-shadow: 0 12px 30px rgba(15, 26, 28, 0.12);
     --ala-radius: 18px;
+    /* Tunable sticky offset for map + list interactions */
+    --ala-header-height: 72px;
 }
 
 body {
@@ -55,6 +57,12 @@ h1 {
     gap: 1rem;
     flex-wrap: wrap;
     margin-bottom: 3rem;
+}
+
+.result-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
 .begin-para {
@@ -214,10 +222,44 @@ body.has-results .result-bar {
     margin-bottom: 1rem;
 }
 
-#localSpeciesPreview {
-    flex: 0 0 40%;
+/* Results layout: scrolling list + sticky map */
+body.has-results {
+    --ala-sticky-top: var(--ala-header-height);
+}
+
+body.has-results .map-species-row.tour-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    align-items: start;
+}
+
+body.has-results .map-species-row.tour-shell > #tourList {
+    min-width: 0;
+}
+
+body.has-results .map-species-row.tour-shell > #tourAside {
+    min-width: 0;
+    position: sticky;
+    top: var(--ala-sticky-top);
+    align-self: start;
+    height: calc(100vh - var(--ala-sticky-top) - 1rem);
+}
+
+body.has-results .map-species-row.tour-shell > #tourAside .mapContainer {
+    height: 100%;
     min-height: 18rem;
-    padding: 1rem;
+}
+
+/* Keep legacy 40/60 split when wrappers exist */
+body.has-results .map-species-row.tour-shell > #tourList {
+    flex: 0 0 40%;
+    min-width: 0;
+}
+
+body.has-results .map-species-row.tour-shell > #tourAside {
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .mapContainer {
@@ -225,55 +267,111 @@ body.has-results .result-bar {
     height: 18rem;
 }
 
-/* Species card grid */
-#localSpecies {
+/* Task 4: vertical list of tour species sections */
+body.has-results #tourList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding-bottom: 1rem;
 }
 
-.localSpeciesCard {
-    border: 1px solid var(--ala-border);
-    border-radius: 14px;
-    width: fit-content;
-    padding: 0.75rem 1rem 0.45rem;
+.tour-species {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.9);
-    transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
 }
 
-.localSpeciesCard:hover {
+.tour-species:focus-visible .tour-card {
+    outline: 3px solid rgba(11, 107, 116, 0.45);
+    outline-offset: 4px;
+}
+
+.tour-card {
+    --species-bg: rgba(255, 255, 255, 0.9);
+    --species-fg: var(--ala-teal-900);
+    --species-scrim: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--ala-border);
+    border-radius: 16px;
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    background: var(--species-bg);
+    color: var(--species-fg);
+    transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+    text-align: center;
+    min-height: min(72vh, 48rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tour-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--species-scrim);
+    pointer-events: none;
+}
+
+.tour-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.tour-species:hover .tour-card {
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(15, 26, 28, 0.12);
     border-color: rgba(11, 107, 116, 0.28);
 }
 
-.localSpeciesCard a {
-    color: var(--ala-teal-900);
+.tour-species.is-selected .tour-card {
+    border-color: rgba(241, 90, 36, 0.55);
+    box-shadow: 0 14px 34px rgba(241, 90, 36, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tour-card {
+        transition: none;
+    }
+
+    .tour-species:hover .tour-card {
+        transform: none;
+    }
+}
+
+.tour-image-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tour-image {
+    width: min(100%, 32rem);
+    max-height: 18rem;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.tour-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: inherit;
     text-decoration: none;
 }
 
-.localSpeciesCard a:hover {
+.tour-name:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
 
-#localSpeciesPreview .localSpeciesCardImage img {
-    height: 16rem;
-    max-width: 26rem;
+.tour-image-link:focus-visible,
+.tour-name:focus-visible {
+    outline: 3px solid rgba(11, 107, 116, 0.45);
+    outline-offset: 4px;
     border-radius: 12px;
 }
 
-#localSpecies .localSpeciesCardImage img {
-    height: 4rem;
-}
-
-.localSpeciesCardText {
-    font-size: 0.9rem;
-    margin-top: 0.4rem;
-}
 
 .local-life-content {
     min-height: 80vh;
@@ -300,12 +398,38 @@ body.has-results .local-life-content {
 }
 
 /* Responsive: stack preview above map on narrow screens */
+@media (max-width: 900px) {
+    body.has-results .map-species-row.tour-shell {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    body.has-results .map-species-row.tour-shell > #tourAside {
+        order: -1;
+        position: sticky;
+        top: var(--ala-sticky-top);
+        height: 35vh;
+        z-index: 2;
+    }
+
+    body.has-results .map-species-row.tour-shell > #tourAside .mapContainer {
+        height: 35vh;
+        min-height: 0;
+    }
+
+    .tour-card {
+        min-height: 55vh;
+    }
+}
+
 @media (max-width: 700px) {
     .map-species-row {
         flex-direction: column;
     }
 
-    #localSpeciesPreview {
+    .map-species-row.tour-shell > #tourList,
+    .map-species-row.tour-shell > #tourAside {
         flex: none;
         width: 100%;
     }

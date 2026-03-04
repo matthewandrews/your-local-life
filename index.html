@@ -41,50 +41,57 @@
 
     <main role="main" class="container">
 
-      <div class="local-life-content">
-        <h1 class="your-local-life-title hide-init">Your local life</h1>
-        <div class="result-bar hide-init">
-          <div class="begin-para">
-              Let's take a look at the living things in your area...
-          </div>
-          <button id="pauseResume" type="button" class="btn ala-btn-secondary" style="display:none" aria-pressed="false">Pause</button>
-        </div>
-        <div class="where-para hide-init">
-            <form name="searchForm" id="searchForm" class="where-form" action="" method="GET">
-                <div class="control-group">
-                    <div class="where-controls">
-                      <div class="input-group">
-                        <input
-                        id="address"
-                        class="form-control"
-                        aria-describedby="address-hint"
-                        name="address"
-                        type="text"
-                        value="-35.2748,149.1142"/>
-                        <button id="locationSearch" type="submit" class="btn ala-btn">Search</button>
-                      </div>
-                      <span id="address-hint" class="input-hint">Enter a street <label for="address">address</label>, place name, postcode or GPS coordinates (lat, long)... or just <a href="#">use your location</a></span>
-                      <span>
-                        <span class='suggestion' onclick="setAddress('-27.47,153')">Brisbane</span>
-                        <span class='suggestion' onclick="setAddress('-35.2748,149.1142')">Canberra</span>
-                        <span class='suggestion' onclick="setAddress('-13.46,130.84')">Darwin</span>
-                        <span class='suggestion' onclick="setAddress('-42.88,147.32')">Hobart</span>
-                        <span class='suggestion' onclick="setAddress('-37.81,144.96')">Melbourne</span>
-                        <span class='suggestion' onclick="setAddress('-31.95,115.86')">Perth</span>
-                        <span class='suggestion' onclick="setAddress('-33.87,151.2')">Sydney</span>
-                      </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-      </div>
+      <section class="local-life-content" aria-label="Intro">
+        <h1 class="your-local-life-title">Your local life</h1>
 
-      <section class="results" aria-live="polite">
-        <div class="map-species-row">
-          <div id="localSpeciesPreview" class="ala-panel"></div>
-          <div id="map" class="mapContainer ala-panel" aria-label="Map"></div>
+        <div class="where-para">
+          <form name="searchForm" id="searchForm" class="where-form" action="" method="GET">
+            <div class="control-group">
+              <div class="where-controls">
+                <div class="input-group">
+                  <input
+                    id="address"
+                    class="form-control"
+                    aria-describedby="address-hint"
+                    name="address"
+                    type="text"
+                    value="-35.2748,149.1142"
+                  />
+                  <button id="locationSearch" type="submit" class="btn ala-btn">Search</button>
+                </div>
+                <span id="address-hint" class="input-hint">Enter a street <label for="address">address</label>, place name, postcode or GPS coordinates (lat, long)... or just <a href="#">use your location</a></span>
+                <span>
+                  <span class='suggestion' onclick="setAddress('-27.47,153')">Brisbane</span>
+                  <span class='suggestion' onclick="setAddress('-35.2748,149.1142')">Canberra</span>
+                  <span class='suggestion' onclick="setAddress('-13.46,130.84')">Darwin</span>
+                  <span class='suggestion' onclick="setAddress('-42.88,147.32')">Hobart</span>
+                  <span class='suggestion' onclick="setAddress('-37.81,144.96')">Melbourne</span>
+                  <span class='suggestion' onclick="setAddress('-31.95,115.86')">Perth</span>
+                  <span class='suggestion' onclick="setAddress('-33.87,151.2')">Sydney</span>
+                </span>
+              </div>
+            </div>
+          </form>
         </div>
-        <div id="localSpecies"></div>
+      </section>
+
+      <section id="tourHeader" aria-live="polite" aria-label="Tour header">
+        <div class="result-bar hide-init">
+          <div class="begin-para">Let's take a look at the living things in your area...</div>
+          <div class="result-actions">
+            <button id="searchAgain" type="button" class="btn ala-btn-secondary" style="display:none">Search again</button>
+            <button id="pauseResume" type="button" class="btn ala-btn-secondary" style="display:none" aria-pressed="false">Pause</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="results" aria-label="Tour">
+        <div class="map-species-row tour-shell">
+          <div id="tourList" aria-label="Species list"></div>
+          <aside id="tourAside" aria-label="Map">
+            <div id="map" class="mapContainer ala-panel"></div>
+          </aside>
+        </div>
       </section>
 
       <footer class="ala-footer">
