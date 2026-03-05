@@ -16,7 +16,6 @@ function setUiStateInitial() {
     $('.where-para').show();
 
     // Results header
-    $('#pauseResume').hide();
     $('#searchAgain').hide();
     $('.result-bar').hide();
 
@@ -31,7 +30,6 @@ function setUiStateSearching(message) {
     $('.your-local-life-title').hide();
     $('.where-para').hide();
 
-    $('#pauseResume').hide();
     $('#searchAgain').hide();
     $('.begin-para').text(message || 'Retrieving your results...');
     $('.result-bar').show();
@@ -89,7 +87,6 @@ var longitude;
 var latitude;
 var radius = 3;
 var map = null;
-var speciesPaused = false;
 var speciesRunId = 0;
 
 // Task 6 (Optional): auto-highlight current species while scrolling.
@@ -443,11 +440,6 @@ function sampleSpeciesCardColorsFromUrl(cardEl, src, runId) {
     sampler.src = src;
 }
 
-$(document).on('click', '#pauseResume', function() {
-    speciesPaused = !speciesPaused;
-    updatePauseResumeButton();
-});
-
 $(document).on('click', '.tour-species', function(e) {
     // When clicking on a link, still allow it to open, but also sync the map.
     var $section = $(this);
@@ -482,13 +474,6 @@ $(document).on('keydown', '.tour-species', function(e) {
         $(this).trigger('click');
     }
 });
-
-function updatePauseResumeButton() {
-    var $btn = $('#pauseResume');
-    if (!$btn.length) return;
-    $btn.text(speciesPaused ? 'Resume' : 'Pause');
-    $btn.attr('aria-pressed', speciesPaused ? 'true' : 'false');
-}
 
 $(document).on('submit', '#searchForm', function(e) {
     e.preventDefault();
@@ -610,8 +595,6 @@ function reverseGeocode(lat, lon, runId) {
 function searchPending(message) {
     // Invalidate any previous species animation loop
     speciesRunId += 1;
-    speciesPaused = false;
-    updatePauseResumeButton();
     setUiStateSearching(message);
 
     teardownTourSpeciesObserver();
@@ -620,7 +603,6 @@ function searchPending(message) {
 
 function showError(message) {
     $('body').removeClass('has-results');
-    $('#pauseResume').hide();
     $('#searchAgain').hide();
     $('.begin-para').text(message);
     revealOrFadeIn($('.result-bar'), 500);
@@ -628,31 +610,11 @@ function showError(message) {
     revealOrFadeIn($('.where-para'), 500);
 }
 
-function waitWhilePaused(runId) {
-    return new Promise((resolve) => {
-        function tick() {
-            if (runId !== speciesRunId) {
-                resolve(false);
-                return;
-            }
-            if (!speciesPaused) {
-                resolve(true);
-                return;
-            }
-            setTimeout(tick, 200);
-        }
-        tick();
-    });
-}
-
 function showSpecies(data) {
     // Ensure container is ready before rendering
     ensureTourListShell();
 
     var runId = speciesRunId;
-    speciesPaused = false;
-    updatePauseResumeButton();
-    $('#pauseResume').show();
 
     resetSelectedSpeciesCacheForRun(runId);
 
@@ -680,10 +642,6 @@ function showSpecies(data) {
             }
             if (runId !== speciesRunId) return;
 
-            var canContinue = await waitWhilePaused(runId);
-            if (!canContinue) return;
-            if (runId !== speciesRunId) return;
-
             var commonname = speciesList[i].label;
             if (commonname === 'Not supplied') continue;
 
@@ -695,10 +653,6 @@ function showSpecies(data) {
                 );
             if (runId !== speciesRunId) return;
             if (!speciesData || speciesData.imageIdentifier == null) continue;
-
-            canContinue = await waitWhilePaused(runId);
-            if (!canContinue) return;
-            if (runId !== speciesRunId) return;
 
             var guid = speciesData.taxonConcept && speciesData.taxonConcept.guid;
             if (!guid) continue;
@@ -787,17 +741,12 @@ function showSpecies(data) {
             $section.attr('aria-current', 'true');
             showOnMap(guid);
         }
-
-        if (runId !== speciesRunId) return;
-        $('#pauseResume').hide();
     })();
 }
 
 $(document).on('click', '#searchAgain', function() {
     // Invalidate any pending async work
     speciesRunId += 1;
-    speciesPaused = false;
-    updatePauseResumeButton();
 
     teardownTourSpeciesObserver();
     resetSelectedSpeciesCacheForRun(speciesRunId);
